@@ -1,0 +1,53 @@
+# ===== Maven 构建产物 =====
+target/
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/timing.properties
+
+# ===== Java 编译产物 =====
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+replay_pid*
+
+# ===== IntelliJ IDEA =====
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+*.hprof
+
+# ===== Eclipse =====
+.classpath
+.project
+.settings/
+.apt_generated
+.factorypath
+.springBeans
+.sts4-cache
+
+# ===== VS Code =====
+.vscode/
+*.code-workspace
+
+# ===== 日志 =====
+*.log
+logs/
+*.pid
+
+# ===== 操作系统 =====
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ===== 本地环境 / 密钥（请勿提交）=====
+.env
+.env.*
+*.local
+*.pem
+*.key
+*.jks
+*.p12

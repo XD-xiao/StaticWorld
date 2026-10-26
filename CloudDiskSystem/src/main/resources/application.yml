@@ -1,0 +1,44 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: cloud-disk-service
+  mvc:
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: false
+  config:
+    import:
+      - optional:nacos:common.yaml
+  cloud:
+    nacos:
+      # 配置中心与服务发现共用一套地址与账号
+      server-addr: 192.168.10.114:8848
+      username: nacos
+      password: nacos2026
+    openfeign:
+      circuitbreaker:
+        enabled: true
+  datasource:
+    url: jdbc:postgresql://${db.host}:${db.port}/staticworld_clouddisk_db
+  servlet:
+    multipart:
+      # 云盘上传文件较大，占位值，后续按实际需求调整
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+
+rustfs:
+  # access-key / secret-key 由 Nacos common.yaml 提供；私有桶，无 public-base-url
+  endpoint: http://192.168.10.114:9000
+  region: us-east-1
+  bucket: sw-clouddisksystem
+
+logging:
+  level:
+    com.example.clouddisk: debug

@@ -1,0 +1,47 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: user-service
+  mvc:
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: false
+  config:
+    import:
+      - optional:nacos:common.yaml
+  cloud:
+    nacos:
+      # 配置中心与服务发现共用一套地址与账号
+      server-addr: 192.168.10.114:8848
+      username: nacos
+      password: nacos2026
+    openfeign:
+      circuitbreaker:
+        enabled: true
+  datasource:
+    url: jdbc:postgresql://${db.host}:${db.port}/staticworld_usersystem_db
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 10MB
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+
+jwt:
+  # 密钥由 common.yaml 提供，此处只配置本模块的有效期
+  access-ttl: 8m
+  refresh-ttl: 15d
+
+rustfs:
+  # 端点/密钥/区域由 common.yaml 提供，此处只配置本模块的桶与公开访问基址
+  bucket: sw-usersystem
+  public-base-url: http://192.168.10.114:9000/sw-usersystem
+
+logging:
+  level:
+    com.example.user: debug
